@@ -5,7 +5,7 @@ name: "deploy-infra"
 on:
   push:
     branches:
-      - temp #main
+      - main
     paths:  
       - terraform/**
   workflow_dispatch: # Enables manual trigger for destroy job
@@ -104,10 +104,10 @@ jobs:
           aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 # TEMP          
-      - name: TEMP Terraform destroy
-        id: temp_destroy
-        run: terraform destroy -auto-approve -input=false
-
+      # - name: TEMP Terraform destroy
+      #   id: temp_destroy
+      #   run: terraform destroy -auto-approve -input=false
+#
       - name: Get Kubernetes config
         id: getconfig
         run: aws eks update-kubeconfig --name ${{ env.EKS_CLUSTER }} --region ${{ env.AWS_REGION }} 
