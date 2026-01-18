@@ -21,7 +21,7 @@ module "rds" {
 
   # Security groups
   vpc_security_group_ids = [module.db_sg.security_group_id]
-  db_parameter_group_family = "postgres15"
+  family  = "postgres15"
 
   skip_final_snapshot = true       # for dev/testing only
   deletion_protection = false      # for dev/testing only
