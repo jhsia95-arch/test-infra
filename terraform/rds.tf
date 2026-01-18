@@ -5,7 +5,7 @@ module "rds" {
   identifier = "tech-assessment-db"
 
   engine            = "postgres"
-  engine_version    = "15.4"       # pick latest stable
+  engine_version    = "15.10"       # pick latest stable
   instance_class    = "db.t3.medium"
   allocated_storage = 20
 
