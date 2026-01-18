@@ -1,50 +1,50 @@
-# module "rds" {
-#   source  = "terraform-aws-modules/rds/aws"
-#   version = "~> 5.0"
+module "rds" {
+  source  = "terraform-aws-modules/rds/aws"
+  version = "~> 5.0"
 
-#   identifier = "tech-assessment-db"
+  identifier = "tech-assessment-db"
 
-#   engine            = "postgres"
-#   engine_version    = "15.10"       # pick latest stable
-#   instance_class    = "db.t3.medium"
-#   allocated_storage = 20
+  engine            = "postgres"
+  engine_version    = "15.10"       # pick latest stable
+  instance_class    = "db.t3.medium"
+  allocated_storage = 20
 
-#   db_name      = "postgresdb"              # Database name
-#   username = "dbadmin"            # Master user
-#   password = var.db_password      # Stored in terraform variable or secret
+  db_name      = "postgresdb"              # Database name
+  username = "dbadmin"            # Master user
+  password = var.db_password      # Stored in terraform variable or secret
 
-#   # Use private subnets for isolation
-#   subnet_ids = module.vpc.database_subnets
+  # Use private subnets for isolation
+  subnet_ids = module.vpc.database_subnets
 
-#   # Multi-AZ for production (optional)#
-#   multi_az = false
+  # Multi-AZ for production (optional)#
+  multi_az = false
 
-#   # Security groups
-#   vpc_security_group_ids = [module.db_sg.security_group_id]
-#   family  = "postgres15"
+  # Security groups
+  vpc_security_group_ids = [module.db_sg.security_group_id]
+  family  = "postgres15"
 
-#   skip_final_snapshot = true       # for dev/testing only
-#   deletion_protection = false      # for dev/testing only
+  skip_final_snapshot = true       # for dev/testing only
+  deletion_protection = false      # for dev/testing only
 
-#   tags = var.tags
-# }
+  tags = var.tags
+}
 
-# module "db_sg" {
-#   source  = "terraform-aws-modules/security-group/aws"
-#   version = "~> 5.0"
+module "db_sg" {
+  source  = "terraform-aws-modules/security-group/aws"
+  version = "~> 5.0"
 
-#   name        = "db-sg"
-#   description = "Allow EKS to talk to RDS"
-#   vpc_id      = module.vpc.vpc_id
+  name        = "db-sg"
+  description = "Allow EKS to talk to RDS"
+  vpc_id      = module.vpc.vpc_id
 
-#   ingress_with_cidr_blocks = [
-#     {     
-#       from_port   = 5432
-#       to_port     = 5432
-#       protocol    = "tcp"
-#       cidr_blocks = "10.0.0.0/16"
-#       description = "EKS nodes access"
-#     }
-#   ]
-# }
+  ingress_with_cidr_blocks = [
+    {     
+      from_port   = 5432
+      to_port     = 5432
+      protocol    = "tcp"
+      cidr_blocks = "10.0.0.0/16"
+      description = "EKS nodes access"
+    }
+  ]
+}
 
