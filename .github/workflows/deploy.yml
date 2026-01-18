@@ -103,6 +103,10 @@ jobs:
           aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
+# TEMP          
+      - name: Terraform destroy
+        id: destroy
+        run: terraform destroy -auto-approve -input=false
 
       - name: Get Kubernetes config
         id: getconfig
