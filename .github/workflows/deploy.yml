@@ -2,13 +2,13 @@
 name: "deploy-infra"
 
 # Workflow Triggers
-# on:
-#   push:
-#     branches:
-#       - main
-#     paths:  
-#       - terraform/**
-#   workflow_dispatch: # Enables manual trigger for destroy job
+on:
+  push:
+    branches:
+      - temp #main
+    paths:  
+      - terraform/**
+  workflow_dispatch: # Enables manual trigger for destroy job
 
 # Environment Variables
 env:
@@ -104,7 +104,7 @@ jobs:
           aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 # TEMP          
-      - name: Terraform destroy
+      - name: TEMP Terraform destroy
         id: temp_destroy
         run: terraform destroy -auto-approve -input=false
 
