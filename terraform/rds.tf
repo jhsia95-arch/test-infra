@@ -16,7 +16,7 @@ module "rds" {
   # Use private subnets for isolation
   subnet_ids = module.vpc.database_subnets
 
-  # Multi-AZ for production (optional)
+  # Multi-AZ for production (optional)#
   multi_az = false
 
   # Security groups
