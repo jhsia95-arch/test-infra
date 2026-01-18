@@ -38,12 +38,11 @@ module "db_sg" {
   vpc_id      = module.vpc.vpc_id
 
   ingress_with_cidr_blocks = [
-      from_port   = 5432
-      to_port     = 5432
-      protocol    = "tcp"
-      cidr_blocks = "10.0.0.0/16" 
+      from_port   = 5432,
+      to_port     = 5432,
+      protocol    = "tcp",
+      cidr_blocks = "10.0.0.0/16", 
       description = "EKS nodes access"
-
   ]
 }
 
