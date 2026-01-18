@@ -26,8 +26,19 @@ variable "public_subnet_cidr_blocks" {
   default = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
 }
 
+variable "database_subnet_cidr_blocks" {
+  default = ["10.0.11.0/24", "10.0.12.0/24", "10.0.13.0/24"]
+}
+
 variable "tags" {
   default = {
     App = "eks-cluster"
   }
+}
+
+variable "db_password" {
+  description = "RDS master password"
+  type        = string
+  sensitive   = true
+  default = "test"
 }
