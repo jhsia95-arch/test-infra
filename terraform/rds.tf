@@ -1,7 +1,7 @@
 module "rds" {
   source  = "terraform-aws-modules/rds/aws"
-  version = "~> 5.0"
-
+#   version = "~> 5.0"
+  version = "~> 6.0"
   identifier = "tech-assessment-db"
 
   engine            = "postgres"
