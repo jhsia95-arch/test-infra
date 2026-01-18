@@ -21,6 +21,7 @@ module "rds" {
 
   # Security groups
   vpc_security_group_ids = [module.db_sg.security_group_id]
+  db_parameter_group_family = "postgres15"
 
   skip_final_snapshot = true       # for dev/testing only
   deletion_protection = false      # for dev/testing only
@@ -37,13 +38,12 @@ module "db_sg" {
   vpc_id      = module.vpc.vpc_id
 
   ingress_with_cidr_blocks = [
-    {
       from_port   = 5432
       to_port     = 5432
       protocol    = "tcp"
-      cidr_blocks = module.vpc.private_subnets
+      cidr_blocks = "10.0.0.0/16" 
       description = "EKS nodes access"
-    }
+
   ]
 }
 
