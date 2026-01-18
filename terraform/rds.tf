@@ -14,7 +14,7 @@ module "rds" {
   password = var.db_password      # Stored in terraform variable or secret
 
   # Use private subnets for isolation
-  db_subnet_group_name = "db-subnet-group"
+  db_subnet_group_name = "tech-assessment-eks"
   subnet_ids = module.vpc.database_subnets
 
   # Multi-AZ for production (optional)#
