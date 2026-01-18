@@ -9,7 +9,7 @@ module "rds" {
   instance_class    = "db.t3.medium"
   allocated_storage = 20
 
-  name     = "appdb"              # Database name
+  database_name      = "appdb"              # Database name
   username = "dbadmin"            # Master user
   password = var.db_password      # Stored in terraform variable or secret
 
