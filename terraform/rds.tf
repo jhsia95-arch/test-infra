@@ -20,7 +20,7 @@ module "rds" {
   multi_az = false
 
   # Security groups
-  vpc_security_group_ids = [module.db_sg.this_security_group_id]
+  vpc_security_group_ids = [module.db_sg.security_group_id]
 
   skip_final_snapshot = true       # for dev/testing only
   deletion_protection = false      # for dev/testing only
