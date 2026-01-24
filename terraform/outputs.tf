@@ -36,5 +36,5 @@ output "ecr_repo_name" {
 }
 
 output "rds_master_secret_arn" {
-  value = module.rds.master_user_secret_arn
+  value = module.rds.db_instance_master_user_secret_arn
 }
