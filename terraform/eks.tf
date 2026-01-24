@@ -26,7 +26,7 @@ module "eks" {
       most_recent = true
     }
     secrets-store-csi-driver = {   
-      most_recent = true
+      addon_version = "v1.4.3-eksbuild.1"
     }    
   }
 
