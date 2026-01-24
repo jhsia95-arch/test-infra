@@ -9,7 +9,9 @@ data "aws_eks_cluster_auth" "this" {
 data "aws_iam_openid_connect_provider" "this" {
   url = data.aws_eks_cluster.this.identity[0].oidc[0].issuer
 }
-
+locals {
+  oidc_url = replace(data.aws_iam_openid_connect_provider.this.url, "https://", "")
+}
 # IAM Role
 resource "aws_iam_role" "fastapi_irsa" {
   name = "fastapi-secrets-role"
@@ -24,10 +26,8 @@ resource "aws_iam_role" "fastapi_irsa" {
       Action = "sts:AssumeRoleWithWebIdentity"
       Condition = {
         StringEquals = {
-          "${replace(data.aws_iam_openid_connect_provider.this.url, "https://", "")}:sub" =
-            "system:serviceaccount:${var.namespace}:${var.service_account_name}"
-          "${replace(data.aws_iam_openid_connect_provider.this.url, "https://", "")}:aud" =
-            "sts.amazonaws.com"
+            "${local.oidc_url}:sub" = "system:serviceaccount:${var.namespace}:${var.service_account_name}"
+            "${local.oidc_url}:aud" = "sts.amazonaws.com"
         }
       }
     }]
