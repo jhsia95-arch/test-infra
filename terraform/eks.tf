@@ -48,17 +48,3 @@ module "eks" {
 #   depends_on = [module.eks]
 # }
 
-resource "helm_release" "secrets_store_csi" {
-  name       = "secrets-store-csi-driver"
-  repository = "https://kubernetes-sigs.github.io/secrets-store-csi-driver/charts"
-  chart      = "secrets-store-csi-driver"
-  namespace  = "kube-system"
-  
-  # This ensures Helm waits until the EKS control plane is actually up
-  depends_on = [module.eks] 
-
-  set {
-    name  = "syncSecret.enabled"
-    value = "true"
-  }
-}
