@@ -9,7 +9,7 @@ module "ecr" {
   create_lifecycle_policy = false
 
   tags = {
-    Terraform = "true"
+    Terraform = "true" #
   }
 }
 #
