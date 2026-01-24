@@ -10,7 +10,7 @@
 #   url = data.aws_eks_cluster.this.identity[0].oidc[0].issuer
 # }
 locals {
-  oidc_url = replace(data.aws_iam_openid_connect_provider.this.url, "https://", "")
+  oidc_url = replace(module.eks.cluster_oidc_issuer_url, "https://", "")
 }
 # IAM Role
 resource "aws_iam_role" "fastapi_irsa" {
