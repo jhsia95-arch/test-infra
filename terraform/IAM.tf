@@ -21,7 +21,7 @@ resource "aws_iam_role" "fastapi_irsa" {
     Statement = [{
       Effect = "Allow"
       Principal = {
-        Federated = data.aws_iam_openid_connect_provider.this.arn
+        Federated = module.eks.cluster_oidc_issuer_arn
       }
       Action = "sts:AssumeRoleWithWebIdentity"
       Condition = {
