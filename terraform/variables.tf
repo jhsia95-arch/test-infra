@@ -36,9 +36,22 @@ variable "tags" {
   }
 }
 
-variable "db_password" {
-  description = "RDS master password"
-  type        = string
-  sensitive   = true
-  default = "test"
+# variable "db_password" {
+#   description = "RDS master password"
+#   type        = string
+#   sensitive   = true
+#   default = "test"
+# }
+
+variable "cluster_name" {
+  default = "tech-assessment-eks"
+}
+variable "namespace" {
+  default = "default"
+}
+variable "service_account_name" {
+  default = "fastapi-sa"
+}
+variable "rds_secret_arn" {
+  default = "arn:aws:secretsmanager:ap-southeast-1:995597568618:secret:rds!db*"
 }

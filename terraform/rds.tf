@@ -13,7 +13,7 @@ module "rds" {
   username = "dbadmin"            # Master user
 #   password = var.db_password      # Stored in terraform variable or secret
   manage_master_user_password = true
-#   manage_master_user_password_rotation = true
+  manage_master_user_password_rotation = true
   # Use private subnets for isolation
   db_subnet_group_name = "tech-assessment-eks"
   subnet_ids = module.vpc.database_subnets

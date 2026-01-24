@@ -34,3 +34,7 @@ output "ecr_repo_name" {
   description = "ECR Repo name"
   value       = module.ecr.repository_name
 }
+
+output "rds_master_secret_arn" {
+  value = module.rds.master_user_secret_arn
+}
