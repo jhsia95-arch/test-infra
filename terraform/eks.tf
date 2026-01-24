@@ -25,9 +25,6 @@ module "eks" {
     vpc-cni = {
       most_recent = true
     }
-    secrets-store-csi-driver = {   
-      addon_version = "v1.4.3-eksbuild.1"
-    }    
   }
 
   eks_managed_node_groups = {
@@ -40,4 +37,13 @@ module "eks" {
   }
 
   tags = var.tags
+}
+
+resource "aws_eks_addon" "secrets_store_csi" {
+  cluster_name = module.eks.cluster_name
+  addon_name   = "secrets-store-csi-driver"
+
+  addon_version = "v1.4.3-eksbuild.1" 
+
+  depends_on = [module.eks]
 }
