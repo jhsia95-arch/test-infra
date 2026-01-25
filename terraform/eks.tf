@@ -32,13 +32,13 @@ module "eks" {
       instance_types = ["t3.small"]
       min_size       = 2
       max_size       = 4
-      desired_size   = 2 #
+      desired_size   = 3 #
     }
   }
 
   tags = var.tags
 }
-
+#
 # resource "aws_eks_addon" "secrets_store_csi" {
 #   cluster_name = module.eks.cluster_name
 #   addon_name   = "secrets-store-csi-driver"
