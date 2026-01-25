@@ -58,7 +58,7 @@ resource "aws_iam_role_policy_attachment" "attach" {
 }
 
 
-#bind to SA
+#bind to SA#
 resource "kubernetes_service_account" "fastapi" {
   metadata {
     name      = var.service_account_name
